@@ -53,10 +53,14 @@ module.exports = function (opts) {
         }
     }
     function enc (s) {
-        return s.replace(/"/g, '&#34;')
-            .replace(/>/g, '&gt;')
-            .replace(/</g, '&lt;')
-        ;
+        try {
+            return s.replace(/"/g, '&#34;')
+                .replace(/>/g, '&gt;')
+                .replace(/</g, '&lt;')
+            ;
+        } catch (e) {
+            return s   
+        }
     }
     function inline64 (node, name) {
         var href = node.getAttribute(name);
